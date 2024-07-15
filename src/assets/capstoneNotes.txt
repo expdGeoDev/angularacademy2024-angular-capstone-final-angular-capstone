@@ -1,0 +1,73 @@
+1. Search for a coffee
+-- for search when no coffee grid displays no matches found 
+-- bad inputs in search could special chars
+- could be minimum number of chars before search
+- filter grid object based on search parameters
+--first attempt should be filter on observable
+--Search Terms : all fields except ID and testing notes
+
+2. List coffees
+-- get request with no filters (returns all coffees), tie to observable, map to grid
+-- filtering : could use selection filtering re initializing the filter pipe to return filtered dataset
+-- could leverage built in pagination
+
+3. Details for a specific coffee
+-- use a button at row level to populate popup modal with all coffee details
+-- could use list details component (valencia to find link)
+
+4. Add a coffee
+-- adding coffee form with validations
+Validations--
+id: n/a
+active: n/a
+roaster: Required 
+variety: n/a
+size: Required
+roast: Required
+format: Required
+grind: Required
+origin: n/a
+singleOrigin: n/a
+tastingNotes: n/a
+--
+
+5. Edit a coffee
+-- for editing use a pop up form, populating existing coffee data
+-- will still need validations
+-- lets work to reuse the add new form component(this reduces dev work)
+--- for editing id value will ve the id of the coffee otherwise wil default to 0 indicating it is a new item to add
+--- ngStyle or property to hide and show the id value
+--- make sure form title changes on action
+
+6. Delete a coffee
+-- deleting coffee can be grouped with the edit functionality or the details functionality.
+-- will need to be delete api request using the id as reference changing the active boolean to false
+
+7. Navigation between these views should be intuitive
+-- seperate router link to re activating "deleted" (false flag) back to active and readding to data set
+
+TESTING
+-- initially do it in working session then branch off after
+
+EXTRA
+ 
+
+API endpoints
+- get: getAllCoffees \getAll : get all coffees with no filters
+- get: searchCoffee \Search : get all coffees with filters
+- post: adding a new coffee
+-- Parameters(
+id: INT: defaulted to incrimenting value,
+active: BOOLEAN: defaulted to true,
+roaster: STRING: user input ,
+variety: NULL:  default null,
+size: INT: packaging size (oz), user selection radiobutton,
+roast: STRING: coffee type, user selection dropdown,
+format: STRING: format type, user selection dropdown,
+grind: INT: slider selection ,
+origin: STRING: user input,
+singleOrigin: BOOLEAN: no default, user selection,
+tastingNotes: STRING: user input
+)
+- delete: deleteCoffee \deleteCoffee : using id to delete from data
+- put: updateCoffee \updateCoffee : user input form with updated field values
