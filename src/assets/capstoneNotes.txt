@@ -1,0 +1,24 @@
+1.  for search when no coffee grid displays no matches found
+2. bad data in search could special chars
+- could be minimum number of chars before search
+- filter grid object based on search parameters
+--first attempt should be filter on observable
+--Search Terms : all fields except ID and testing notes
+
+
+API endpoints
+- get: get all coffees
+- post: adding a new coffee
+-- Parameters(
+id: INT: defaulted to incrimenting value,
+active: BOOLEAN: defaulted to true,
+roaster: STRING: user input ,
+variety: NULL:  default null,
+size: INT: packaging size (oz), user selection radiobutton,
+roast: STRING: coffee type, user selection dropdown,
+format: STRING: format type, user selection dropdown,
+grind: INT: slider selection ,
+origin: STRING: user input,
+singleOrigin: BOOLEAN: no default, user selection,
+tastingNotes: STRING: user input
+)
