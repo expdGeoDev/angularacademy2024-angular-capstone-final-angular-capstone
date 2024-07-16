@@ -79,10 +79,10 @@ These are goals to be attempted after completing the primary portion of the caps
 
 ## Current TODOs (John)
 
--[x] Update data file with more information on varieties
--[ ] Map grind values to descriptors
--[ ] Provide the Azure back-end information
--[ ] Downgrade `json-server` to 0.17.4 to enable partial matching?
+- [x] Update data file with more information on varieties
+- [ ] Map grind values to descriptors
+- [ ] Provide the Azure back-end information
+- [ ] Downgrade `json-server` to 0.17.4 to enable partial matching?
 
 ## Proposed data updates
 
