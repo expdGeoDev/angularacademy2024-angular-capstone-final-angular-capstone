@@ -1,7 +1,4 @@
 
-import * as data from './coffee-data.json';
-
-export const coffeeData: Coffee[] = data.coffees as Coffee[];
 export type RoastType = 'blonde' | 'light' | 'medium' | 'medium-dark' | 'dark' | 'espresso';
 export type FormatType = 'k-pod' | 'beans' | 'ground'
 
