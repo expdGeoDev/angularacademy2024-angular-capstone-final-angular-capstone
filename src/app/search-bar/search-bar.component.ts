@@ -22,7 +22,7 @@ export class SearchBarComponent {
 
 	onSubmit(){
 		console.log(this.searchString.valueOf());
-		this.searchResult =  this.coffeeHTTPService.findByRoaster(this.searchString);
+		this.searchResult =  this.coffeeHTTPService.findBySearchString(this.searchString);
 		console.log(this.searchResult);
 	};
 }
