@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './table-coffe.component.html',
-  styleUrl: './table-coffe.component.css'
+  styleUrl: './table-coffee.component.css'
 })
 export class TableCoffeComponent {
 
