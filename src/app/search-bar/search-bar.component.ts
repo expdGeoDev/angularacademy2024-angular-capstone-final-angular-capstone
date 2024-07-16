@@ -21,8 +21,6 @@ export class SearchBarComponent {
 	constructor(private coffeeHTTPService: CoffeeHttpService){}
 
 	onSubmit(){
-		console.log(this.searchString.valueOf());
 		this.searchResult =  this.coffeeHTTPService.findBySearchString(this.searchString);
-		console.log(this.searchResult);
 	};
 }
