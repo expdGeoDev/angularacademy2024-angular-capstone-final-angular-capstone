@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Coffee, IFilter } from '../common/interfaces';
 import { Observable } from 'rxjs';
+import { Coffee, IFilter } from '../common/coffee-model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class DataHttpServiceService {
 
 	getCoffee(filter: IFilter): Observable<Coffee>{
 
-		const rawData = this.client.get<Coffee>(`${this.baseUrl}`);
+		const rawData: Observable<Coffee> = this.client.get<Coffee>(`${this.baseUrl}`);
 		return filter.applyPipe(rawData);
 	}
 }

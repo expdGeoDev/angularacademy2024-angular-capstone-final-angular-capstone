@@ -5,14 +5,14 @@ export interface Coffee {
 	id: number,
 	active: boolean,
 	roaster: string,
-	variety: string | null,
-	size: number,
-	roast: "dark" | "light",
+	variety: string|null,
+	size: 8|12|14|16|20|24,
+	roast: "dark"|"light"|"espresso",
 	format: "k-pod",
 	grind: number,
-	origin: string | null,
+	origin: string|null,
 	singleOrigin: boolean,
-	tastingNotes: string | null,
+	tastingNotes: string|null,
 }
 
 export interface IPipeBuilder {

@@ -1,5 +1,5 @@
 import { Observable, UnaryFunction, pipe, filter, identity} from "rxjs";
-import { Coffee, IFilter, IPipeBuilder } from "./interfaces";
+import { Coffee, IFilter, IPipeBuilder } from "./coffee-model";
 
 export class DefaultPipeBuilder implements IPipeBuilder {
 

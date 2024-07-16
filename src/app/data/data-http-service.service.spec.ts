@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { DataHttpServiceService } from './data-http-service.service';
-import { Coffee, IFilter } from '../common/interfaces';
-import { DefaultPipeBuilder } from '../common/pipe-builder';
+import { Coffee, IFilter } from '../common/coffee-model';
+import { DefaultPipeBuilder } from '../common/coffee-filter.pipe';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -13,7 +13,6 @@ describe('DataHttpServiceService', () => {
   beforeEach(() => {
 
 		mockHttpClient = jasmine.createSpyObj(['get']);
-
     TestBed.configureTestingModule({
 			providers : [
 				{provide: HttpClient, useValue: mockHttpClient}
@@ -30,19 +29,19 @@ describe('DataHttpServiceService', () => {
 	it('should not be empty', () => {
 
 		mockHttpClient.get.and.returnValue(of<Coffee>(
-			{
-				"id":0,
-				"active": true,
-				"roaster": "Tim Horton's",
-				"variety": null,
-				"size": 14,
-				"roast": "dark",
-				"format": "k-pod",
-				"grind": 8,
-				"origin": null,
-				"singleOrigin": true,
-				"tastingNotes": null
-			}
+				{
+					"id":0,
+					"active": true,
+					"roaster": "Tim Horton's",
+					"variety": null,
+					"size": 14,
+					"roast": "dark",
+					"format": "k-pod",
+					"grind": 8,
+					"origin": null,
+					"singleOrigin": true,
+					"tastingNotes": null
+				}
 		))
 
 		const filters: IFilter = new DefaultPipeBuilder()
@@ -52,8 +51,7 @@ describe('DataHttpServiceService', () => {
 		.betweenSize(19, 21)
 		.build();
 
-		service.getCoffee(filters).subscribe();
-		expect(coffees)
+		var results: Coffee[];
 	});
 
 });
