@@ -8,4 +8,7 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
+	it('should be true', () => {
+		expect(true).toBeTrue();
+	})
 });
