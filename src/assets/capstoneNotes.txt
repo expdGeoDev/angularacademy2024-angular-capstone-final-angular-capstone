@@ -71,3 +71,19 @@ tastingNotes: STRING: user input
 )
 - delete: deleteCoffee \deleteCoffee : using id to delete from data
 - put: updateCoffee \updateCoffee : user input form with updated field values
+
+
+NOTES
+Coffee size ranges: 8,12,14,16,20,24
+
+Coarse
+Fine
+Espresso
+Cold Brew
+French Press
+Drip coffee is another type
+
+Levels of differentiation
+Brand
+Variety/Roast
+Grind
