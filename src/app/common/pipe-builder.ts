@@ -20,7 +20,7 @@ export class DefaultPipeBuilder implements IPipeBuilder {
 
 		if(variety){
 			this.filterList.push(
-				filter(s => variety.some(x => x.match(s.variety)))
+				filter(s => variety.some(x => x.match(s.variety??"")))
 			);
 		}
 
@@ -53,7 +53,7 @@ export class DefaultPipeBuilder implements IPipeBuilder {
 
 		if(origins){
 			this.filterList.push(
-				filter(s => origins.some(x => x.match(s.origin)))
+				filter(s => origins.some(x => x.match(s.origin??"")))
 			);
 		}
 

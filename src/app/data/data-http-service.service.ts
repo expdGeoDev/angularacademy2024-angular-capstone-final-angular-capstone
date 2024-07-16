@@ -8,11 +8,13 @@ import { Observable } from 'rxjs';
 })
 export class DataHttpServiceService {
 
+	baseUrl = "http://localhost:8100"
+
   constructor(private client: HttpClient) { }
 
 	getCoffee(filter: IFilter): Observable<Coffee>{
 
-		const rawData = this.client.get<Coffee>('http://localhost:8100/coffees');
+		const rawData = this.client.get<Coffee>(`${this.baseUrl}`);
 		return filter.applyPipe(rawData);
 	}
 }
