@@ -14,20 +14,21 @@
 		</thead>
 	<!-- Data -->
 		<tbody>
-			@for (data of coffeeRow;track data;){
-			<tr (click)="checkExpanded(data)" [ngClass]="{'data-selected': selectedRow === data.id}">
-				<td> {{ data.expanded ? '' : ''}} {{data.id}} </td>
-				<td> {{data.Name}} </td>
-				<td> {{data.Roast}} </td>
-				<td> {{data.Format}} </td>
+			@for (data of coffeeData;track data;){
+			<tr (click)="checkExpanded(data)">
+			<!--	<td> {{ data.expanded ? '' : ''}} {{data.id}} </td> -->
+				<td> {{data.id}}</td>
+				<td> {{data.roaster}} </td>
+				<td> {{data.size}} </td>
+				<td> {{data.format}} </td>
 			</tr>
-				@if (data.expanded){
+			<!--	@if (data.expanded){
 					@for (details of findDetails(data); track details){
 						<td colspan="4" style="padding-left: 12px" class="border bg-secondary">
 							<label class="bg-secondary"> Size: {{details.datades.size}} | Origin: {{details.datades.origin}} | Grind: {{details.datades.grind}}</label>
 						</td>
 					}
-				}
+				}-->
 			}
 		</tbody>
 	</table>
