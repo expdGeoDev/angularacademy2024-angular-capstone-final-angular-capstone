@@ -1,13 +1,15 @@
 .container {
     display: flex;
     align-items: center;
+    height: auto;
     justify-content: center;
-    background-color: #fceed8;
+    background-image: url('../../assets/cafe.jpg');
+    background-position: center;
     padding: 20px;
 }
 
 .card-block {
-    background-color: #f8e4c5;
+    background-color: #f8e4c5af;
     width: 100%;
 }
 
