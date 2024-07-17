@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableCoffeComponent } from './table-coffe.component';
+import { DeleteCoffeeComponent } from './delete-coffee.component';
 
-describe('TableCoffeComponent', () => {
-  let component: TableCoffeComponent;
-  let fixture: ComponentFixture<TableCoffeComponent>;
+describe('DeleteCoffeeComponent', () => {
+  let component: DeleteCoffeeComponent;
+  let fixture: ComponentFixture<DeleteCoffeeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TableCoffeComponent]
+      imports: [DeleteCoffeeComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(TableCoffeComponent);
+    fixture = TestBed.createComponent(DeleteCoffeeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
