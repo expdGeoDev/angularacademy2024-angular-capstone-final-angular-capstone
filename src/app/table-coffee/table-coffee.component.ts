@@ -65,11 +65,9 @@ export class TableCoffeeComponent implements OnInit{
 	coffeeData! : Coffee[];
 
 	ngOnInit() {
-
 		// this.coffeeData = this.coffeeService.getAllCoffee();
 		//
 		// console.log(this.coffeeData);
-
 		this.coffeeHttp.getAllCoffees().subscribe(
 			{next:(data)=>{
 				this.coffeeData = data;
@@ -86,16 +84,15 @@ export class TableCoffeeComponent implements OnInit{
 		return this.coffeeExpanded.filter(x=>x.whoseData==data.id);
 	}
 
-
+expanded: boolean =false;
 	checkExpanded(data:any){
-		data.expanded = !data.expanded;
-		if(data.expanded) {
+		if(this.expanded) {
 			this.iDFromTable.emit(data.id);
 			console.log('Index: ' + data.id);
 		}else{
 			this.iDFromTable.emit('');
 		}
-		return data.expanded;
+		return this.expanded;
 	}
 
 	@Output() iDFromTable = new EventEmitter<string>();
