@@ -6,14 +6,13 @@
 			<form class="d-flex" role="search">
 				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success" type="submit">Search</button>
-			</form>y
+			</form>
 		</div>
 	</nav>
 	<br>
 	<!-- Button trigger modal -->
 	<div class="container-fluid">
 	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Coffee</button>
-<H1>Parent</H1>
 
 	<!-- Modal -->
 	<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -35,9 +34,6 @@
 							<div class="valid-feedback d-block">This field is valid
 							</div>
 						</div>
-<div class="container">
-<app-table-coffee (iDFromTable)="title = $event" ></app-table-coffee>
-</div>
 
 						<!-- Coffee Type -->
 						<div class="form-group p-3">
@@ -89,36 +85,26 @@
 							<textarea class="form-control" id="flavorNotes" rows="3"
 												placeholder="Enter flavor notes..."></textarea>
 						</div>
-
-						<!-- Buttons -->
-						<div class="form-group p-3 float-end">
-							<button type="reset" class="btn btn-danger btn-md me-2">Reset</button>
-							<button type="submit" class="btn btn-primary btn-md">Submit</button>
-						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="reset" class="btn btn-danger btn-md me-2">Reset</button>
+					<button type="submit" class="btn btn-primary btn-md">Submit</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	</div>
 </main>
-<!-- Footer-->
-<footer class="py-3 my-4">
-	<ul class="nav justify-content-center border-bottom pb-3 mb-3">
-	</ul>
-	<p class="text-center text-body-secondary">Yukon Coffee Shop © 2024</p>
-</footer>
+<div class="container">
+	<H1>Parent</H1>
+	<app-table-coffee (iDFromTable)="title = $event" ></app-table-coffee>
+</div>
 <div class="container">
 	<button type="button" class="btn btn-primary"  (click)="openModal()">
 		Delete
 	</button>
 </div>
-
-
 <!-- Modal -->
 <div class="modal" id="myModal">
 	<div class="modal-dialog">
@@ -128,8 +114,17 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
 			</div>
 			<div class="modal-body">
-			  <app-delete-coffee [title]="title"></app-delete-coffee>
+				<app-delete-coffee [title]="title"></app-delete-coffee>
 			</div>
 		</div>
 	</div>
 </div>
+<!-- Footer-->
+<footer class="py-3 my-4">
+	<ul class="nav justify-content-center border-bottom pb-3 mb-3">
+	</ul>
+	<p class="text-center text-body-secondary">Yukon Coffee Shop © 2024</p>
+</footer>
+
+
+
