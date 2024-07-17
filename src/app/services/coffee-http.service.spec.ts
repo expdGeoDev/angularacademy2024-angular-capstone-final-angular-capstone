@@ -1,66 +1,83 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { CoffeeHttpService } from './coffee-http.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Coffee } from '../common/coffee-model';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { environment } from '../env/env';
 
 describe('DataHttpServiceService', () => {
-  let service: CoffeeHttpService;
+
+	let service: CoffeeHttpService
+	let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
 
     TestBed.configureTestingModule({
-			imports: [ HttpClientTestingModule],
-			providers : [
-				CoffeeHttpService,
-			],
+			imports : [HttpClientTestingModule],
+			providers : [CoffeeHttpService],
 			schemas: [NO_ERRORS_SCHEMA]
 		});
 
+		httpTestingController = TestBed.inject(HttpTestingController);
 		service = TestBed.inject(CoffeeHttpService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeDefined();
-  });
 
-	//FIXME: No running | Not sure why
-	it('should add 1 more element', () => {
+	it(`should call [GET] ${environment.restClientUrl}/coffees`, () => {
 
-		let coffees: Coffee[] = [];
-		let initialCount = 0;
-
-		service
-		.getAllCoffees()
-		.subscribe({
-			next: c =>  {
-				coffees = c;
-				initialCount = coffees.length;
-				console.log(initialCount)
-				console.log(coffees);
-
-				service.addNewCoffee(
-					{
-						"id": 2,
-						"active": true,
-						"roaster": "Tim Horton's",
-						"variety": null,
-						"size": 20,
-						"roast": "dark",
-						"format": "k-pod",
-						"grind": 4,
-						"origin": null,
-						"singleOrigin": false,
-						"tastingNotes": null
-					}
-				);
-
-				//FIXME: Not sure if there is a way to make sure to have this running after data is loaded
-				expect(coffees.length).toBe(initialCount + 1);
+		service.getAllCoffees().subscribe(
+			{
+				next: coffees => {
+					expect(coffees.length).toBe(1);
+					expect(coffees[0].id).toBe(2);
+				}
 			}
-		})
+		);
 
-	});
+		const req = httpTestingController.expectOne(`${environment.restClientUrl}/coffees`);
+		req.flush(
+			[
+				{
+					"id": 2,
+					"active": true,
+					"roaster": "Tim Horton's",
+					"variety": null,
+					"size": 20,
+					"roast": "dark",
+					"format": "k-pod",
+					"grind": 4,
+					"origin": null,
+					"singleOrigin": false,
+					"tastingNotes": null
+				}
+			]
+		)
+		expect(req.request.method).toBe('GET');
+		httpTestingController.verify();
+	})
+
+
+	it(`should call [POST] ${environment.restClientUrl}/coffees`, () => {
+
+		service.addNewCoffee(
+			{
+				"id": 2,
+				"active": true,
+				"roaster": "Tim Horton's",
+				"variety": null,
+				"size": 20,
+				"roast": "dark",
+				"format": "k-pod",
+				"grind": 4,
+				"origin": null,
+				"singleOrigin": false,
+				"tastingNotes": null
+			}
+		);
+
+		const req = httpTestingController.expectOne(`${environment.restClientUrl}/coffees`);
+		expect(req.request.method).toBe('POST');
+	})
 
 });
+
 

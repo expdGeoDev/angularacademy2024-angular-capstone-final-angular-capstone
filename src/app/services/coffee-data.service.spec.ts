@@ -1,20 +1,21 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CoffeeDataService } from './coffee-data.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CoffeeHttpService } from './coffee-http.service';
 
 describe('CoffeeDataService', () => {
   let service: CoffeeDataService;
+	let coffeeHttpService: CoffeeHttpService;
 
   beforeEach(() => {
+		coffeeHttpService = jasmine.createSpyObj<CoffeeHttpService>(['getAllCoffees']);
+
     TestBed.configureTestingModule({
-			imports: [
-				HttpClientTestingModule,
-				CoffeeHttpService
-			],
-			providers : [CoffeeDataService]
+			providers : [
+				CoffeeDataService, {provide: CoffeeHttpService, useValue: coffeeHttpService}
+			]
 		});
+
     service = TestBed.inject(CoffeeDataService);
   });
 
