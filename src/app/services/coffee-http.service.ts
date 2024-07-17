@@ -22,7 +22,6 @@ export class CoffeeHttpService {
 	}
 
 	addNewCoffee(coffee: Coffee) {
-
 		this.client
 			.post(
 				`${environment.restClientUrl}/coffees`,
