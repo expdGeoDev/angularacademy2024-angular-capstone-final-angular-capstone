@@ -22,7 +22,7 @@
 				<td> {{data.Format}} </td>
 			</tr>
 				@if (data.expanded){
-					@for (details of findDetails(data);track details){
+					@for (details of findDetails(data); track details){
 						<td colspan="4" style="padding-left: 12px" class="border bg-secondary">
 							<label class="bg-secondary"> Size: {{details.datades.size}} | Origin: {{details.datades.origin}} | Grind: {{details.datades.grind}}</label>
 						</td>

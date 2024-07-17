@@ -32,6 +32,6 @@ export interface IPipeBuilder {
 
 export interface IFilter {
 
-	applyPipe(rawData: Observable<Coffee>): Observable<Coffee>;
+	applyPipe(rawData: Observable<Coffee[]>): Observable<Coffee[]>;
 }
 
