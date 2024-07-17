@@ -6,119 +6,24 @@
 			<form class="d-flex" role="search">
 				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success" type="submit">Search</button>
-			</form>y
+			</form>
 		</div>
 	</nav>
 	<br>
-	<!-- Button trigger modal -->
-	<div class="container-fluid">
-	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Coffee</button>
-<H1>Parent</H1>
 
-	<!-- Modal -->
-	<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Add Coffee</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<form>
-						<!-- Coffee Brand -->
-						<div class="form-group p-3">
-							<label id="coffeeBrand">Coffee Brand*:</label>
-							<input type="text" class="form-control d-block" id="brand"
-										 aria-describedby="coffeeBrandHelp" placeholder="Enter Coffee Brand" />
-							<div class="invalid-feedback d-block">Brand is Required
-							</div>
-							<div class="valid-feedback d-block">This field is valid
-							</div>
-						</div>
+
 <div class="container">
-<app-table-coffee (iDFromTable)="title = $event" ></app-table-coffee>
+	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Coffee</button>
 </div>
-
-						<!-- Coffee Type -->
-						<div class="form-group p-3">
-							<label id="groundOrBeans">Coffee Type: </label>
-							<div></div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" id="coffeeGround" value="Ground"
-											 checked />
-								<label class="form-check-label" for="coffeeGround">
-									Ground
-								</label>
-							</div>
-							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" id="coffeeBean" value="Bean" />
-								<label class="form-check-label" for="coffeeBean">
-									Bean
-								</label>
-							</div>
-						</div>
-
-						<!-- Roast Type -->
-						<div class="form-group p-3">
-							<label for="roast">Select Roast Type:</label>
-							<select class="form-control" id="roast">
-								<option value="Select Rost" selected></option>
-								<option value="Light" selected>Light</option>
-								<option value="Medium">Medium</option>
-								<option value="Dark">Dark</option>
-							</select>
-						</div>
-
-						<!-- Single Origin -->
-						<div class="form-group p-3">
-							<label class="form-check-label" for="singleOriginSwitch">Single Origin: </label>
-							<div class="form-check form-switch ">
-								<input class="form-check-input" type="checkbox" id="singleOriginSwitch" />
-							</div>
-						</div>
-
-						<!-- Grind Level -->
-						<div class="form-group p-3">
-							<label for="grindRange">Grind Level:</label>
-							<input type="range" class="form-range" min="1" max="3" step="1" id="grindRange" value="1" />
-						</div>
-
-						<!-- Flavor Notes -->
-						<div class="form-group p-3">
-							<label for="flavorNotes">Flavor Notes:</label>
-							<textarea class="form-control" id="flavorNotes" rows="3"
-												placeholder="Enter flavor notes..."></textarea>
-						</div>
-
-						<!-- Buttons -->
-						<div class="form-group p-3 float-end">
-							<button type="reset" class="btn btn-danger btn-md me-2">Reset</button>
-							<button type="submit" class="btn btn-primary btn-md">Submit</button>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
-</main>
-<!-- Footer-->
-<footer class="py-3 my-4">
-	<ul class="nav justify-content-center border-bottom pb-3 mb-3">
-	</ul>
-	<p class="text-center text-body-secondary">Yukon Coffee Shop © 2024</p>
-</footer>
+<div class="container">
+	<app-table-coffee (iDFromTable)="title = $event" ></app-table-coffee>
+	<app-coffee-form></app-coffee-form>
+</div>
 <div class="container">
 	<button type="button" class="btn btn-primary"  (click)="openModal()">
 		Delete
 	</button>
 </div>
-
-
 <!-- Modal -->
 <div class="modal" id="myModal">
 	<div class="modal-dialog">
@@ -128,8 +33,20 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
 			</div>
 			<div class="modal-body">
-			  <app-delete-coffee [title]="title"></app-delete-coffee>
+				<app-delete-coffee [title]="title"></app-delete-coffee>
+
 			</div>
 		</div>
 	</div>
 </div>
+<!-- Footer-->
+<footer class="py-3 my-4">
+	<ul class="nav justify-content-center border-bottom pb-3 mb-3">
+	</ul>
+	<p class="text-center text-body-secondary">Yukon Coffee Shop © 2024</p>
+</footer>
+
+</main>
+
+
+
