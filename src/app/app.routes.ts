@@ -16,7 +16,7 @@ export const routerStates = [
 		params: {
 			coffeeId: {
 				type: 'any',
-				value: '10'
+				value: '0'
 			}
 		},
 		resolve: [

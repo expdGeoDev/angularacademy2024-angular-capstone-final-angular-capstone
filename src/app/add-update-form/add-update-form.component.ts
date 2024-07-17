@@ -4,6 +4,7 @@ import {RoastType, FormatType, Coffee} from "../../data/coffee-data";
 import {CoffeeHttpService} from "../coffee-http.service";
 import {lastValueFrom, tap} from "rxjs";
 
+
 @Component({
 	selector: 'add-update-form',
 	standalone: true,
@@ -13,10 +14,10 @@ import {lastValueFrom, tap} from "rxjs";
 })
 
 export class AddUpdateFormComponent {
-	@Input() coffeeId: String = '';
+	@Input() coffeeId: String = '0';
 
 	newCoffee: Coffee = {
-		id: 1,
+		id: '0',
 		active: true,
 		roaster: "",
 		variety: null,
@@ -81,8 +82,29 @@ export class AddUpdateFormComponent {
 	}
 
 	submitForm() {
-		// add id & active to form data and send to backend
-		let result = this.coffeeForm.getRawValue().roasterControl;
-		alert(result);
+		if(!this.isEditForm()) {this.coffee.id = crypto.randomUUID()}
+		let formData = this.coffeeForm.getRawValue();
+		if(
+			formData.formatControl != null &&
+			formData.roasterControl != null &&
+			formData.singleOriginControl != null &&
+			formData.sizeControl != null &&
+			formData.roastControl != null
+		) {
+			this.coffee.format = formData.formatControl;
+			this.coffee.origin = formData.originControl;
+			this.coffee.roaster = formData.roasterControl;
+			this.coffee.singleOrigin = formData.singleOriginControl;
+			this.coffee.size = formData.sizeControl;
+			this.coffee.tastingNotes = formData.tastingNotesControl;
+			this.coffee.variety = formData.varietyControl;
+			this.coffee.roast = formData.roastControl;
+			if(formData.grindControl != null) {
+				this.coffee.grind = formData.grindControl;
+			}
+		}
+
+		// TODO: display success response and/or redirect to index page
+		this.coffeeHTTPService.createCoffee(this.coffee);
 	}
 }

@@ -11,7 +11,7 @@ export class CoffeeHttpService {
 	constructor(private client: HttpClient) {}
 
 	getAllBeans(): Observable<Coffee[]> {
-		return this.client.get<Coffee[]>(`${this.baseUrl}/coffee`);
+		return this.client.get<Coffee[]>(`${this.baseUrl}/coffees`);
 	}
 
 	findById(id: String): Observable<Coffee> {
@@ -20,5 +20,18 @@ export class CoffeeHttpService {
 
 	findBySearchString(search: string): Observable<Coffee[]> | undefined {
 		return this.client.get<Coffee[]>(`${this.baseUrl}/coffee?roaster_like=${search}|roast_like=${search}|variety_like=${search}|format_like=${search}|tastingNotes_like=${search}`);
+	}
+
+	createCoffee(coffee: Coffee) {
+		console.log('creating', JSON.stringify(coffee));
+		this.client.post(
+			`${this.baseUrl}/coffees`,
+			JSON.stringify(coffee),
+			{headers: {'Content-Type': 'application/json'}}
+		).subscribe({
+			next: (data) => {
+				console.log(data);
+			}
+		});
 	}
 }
