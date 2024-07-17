@@ -105,6 +105,7 @@ export class AddUpdateFormComponent {
 		}
 
 		// TODO: display success response and/or redirect to index page
-		this.coffeeHTTPService.createCoffee(this.coffee);
+		this.isEditForm() ? this.coffeeHTTPService.updateCoffee(this.coffee) :
+			this.coffeeHTTPService.createCoffee(this.coffee);
 	}
 }

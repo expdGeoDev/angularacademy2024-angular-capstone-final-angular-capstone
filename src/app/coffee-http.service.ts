@@ -34,4 +34,16 @@ export class CoffeeHttpService {
 			}
 		});
 	}
+
+	updateCoffee(coffee: Coffee) {
+		this.client.put(
+			`${this.baseUrl}/coffees/${coffee.id}`,
+			JSON.stringify(coffee),
+			{headers: {'Content-Type': 'application/json'}}
+		).subscribe({
+			next: (data) => {
+				console.log(data);
+			}
+		});
+	}
 }
