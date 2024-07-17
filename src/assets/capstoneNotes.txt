@@ -87,15 +87,3 @@ Levels of differentiation
 Brand
 Variety/Roast
 Grind
-
-Coffee Shop Epics
-* Landing Page
-	- Table Structure / Connect Data
-* REST Client
-* Add/Modify/Delete Confirmation Form
-* Notification System
-* Testing (everyone)
-* Validations (Forms/Search)
-
-------------
-* Router
