@@ -1,5 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { CoffeeDataService } from '../services/coffee-data.service';
+import { Coffee } from '../common/coffee-model';
+import { CoffeeHttpService } from '../services/coffee-http.service';
 
 @Component({
   selector: 'app-table-coffee',
@@ -12,7 +15,7 @@ import { NgClass, NgForOf, NgIf } from '@angular/common';
   templateUrl: './table-coffee.component.html',
   styleUrl: './table-coffee.component.css'
 })
-export class TableCoffeeComponent {
+export class TableCoffeeComponent implements OnInit{
 	expandContent = true;
 	selectedRow:string = '';
 	coffeeRow = [{
@@ -58,6 +61,26 @@ export class TableCoffeeComponent {
 		}
 	}
 	]
+
+	coffeeData! : Coffee[];
+
+	ngOnInit() {
+
+		// this.coffeeData = this.coffeeService.getAllCoffee();
+		//
+		// console.log(this.coffeeData);
+
+		this.coffeeHttp.getAllCoffees().subscribe(
+			{next:(data)=>{
+				this.coffeeData = data;
+				console.log(this.coffeeData);
+			}
+			})
+
+	}
+
+	constructor(private coffeeService: CoffeeDataService, private coffeeHttp: CoffeeHttpService) {
+	}
 
 	findDetails(data:any){
 		return this.coffeeExpanded.filter(x=>x.whoseData==data.id);
