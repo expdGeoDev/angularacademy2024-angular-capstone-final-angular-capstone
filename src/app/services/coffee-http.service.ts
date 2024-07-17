@@ -17,11 +17,12 @@ export class CoffeeHttpService {
 	}
 
 	getAllCoffees(): Observable<Coffee[]>{
-
+		console.log("start");
 		return this.client.get<Coffee[]>(`${environment.restClientUrl}/coffees`);
 	}
 
 	addNewCoffee(coffee: Coffee) {
+
 		this.client
 			.post(
 				`${environment.restClientUrl}/coffees`,

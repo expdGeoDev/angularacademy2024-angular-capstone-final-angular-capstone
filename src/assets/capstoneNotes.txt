@@ -1,5 +1,5 @@
 1. Search for a coffee
--- for search when no coffee grid displays no matches found 
+-- for search when no coffee grid displays no matches found
 -- bad inputs in search could special chars
 - could be minimum number of chars before search
 - filter grid object based on search parameters
@@ -20,7 +20,7 @@
 Validations--
 id: n/a
 active: n/a
-roaster: Required 
+roaster: Required
 variety: n/a
 size: Required
 roast: Required
@@ -50,7 +50,7 @@ TESTING
 -- initially do it in working session then branch off after
 
 EXTRA
- 
+
 
 API endpoints
 - get: getAllCoffees \getAll : get all coffees with no filters
