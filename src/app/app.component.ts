@@ -30,4 +30,5 @@ export class AppComponent {
 			modelDiv.style.display='none';
 		}
 	}
+
 }

@@ -1,14 +1,39 @@
 <main class="flex-shrink-0">
 	<!-- Navigation-->
-	<nav class="navbar navbar-expand-lg bg-body-tertiary">
-		<div class="container-fluid">
-			<a class="navbar-brand">Yukon Coffee Shop</a>
-			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success" type="submit">Search</button>
-			</form>
+	<div class="row">
+		<div class="col">
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+				<div class="container-fluid collapse navbar-collapse">
+
+					<ul class="navbar-nav">
+						<a class="navbar-brand">Yukon Coffee Shop</a>
+						<li
+							class="nav-item"
+						>
+							<a
+								uiSref=""
+								uiSrefActive="active"
+								class="nav-link"
+							>
+								Home
+							</a>
+						</li>
+						<li
+							class="nav-item"
+						>
+							<a
+								uiSref="coffeeDelete"
+								uiSrefActive="active"
+								class="nav-link"
+							>
+								Deleted
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
 		</div>
-	</nav>
+	</div>
 	<br>
 
 
@@ -18,6 +43,7 @@
 <div class="container">
 	<app-table-coffee (iDFromTable)="title = $event" ></app-table-coffee>
 	<app-coffee-form></app-coffee-form>
+	<ui-view></ui-view>
 </div>
 <div class="container">
 	<button type="button" class="btn btn-primary"  (click)="openModal()">
@@ -45,6 +71,7 @@
 	</ul>
 	<p class="text-center text-body-secondary">Yukon Coffee Shop © 2024</p>
 </footer>
+
 
 </main>
 
