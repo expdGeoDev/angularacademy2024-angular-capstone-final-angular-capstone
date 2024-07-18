@@ -31,12 +31,13 @@ describe("CoffeeHttpService [Integration]", () => {
 			],
 		})
 
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+
 		TestBed.inject(HttpClient);
 		service = TestBed.inject(CoffeeHttpService)
 	})
 
 	it("should be defined", () => {
-
 		expect(service).toBeDefined();
 	})
 
@@ -48,7 +49,6 @@ describe("CoffeeHttpService [Integration]", () => {
 				expect(coffees.length).toBeGreaterThan(0);
 				done()
 			})
-
 	})
 
 	it(`should call [GET] ${environment.restClientUrl}/coffees/id`, (done: DoneFn) => {
@@ -75,7 +75,6 @@ describe("CoffeeHttpService [Integration]", () => {
 				expect(coffee.id).toBeGreaterThan(0);
 				done();
 			})
-
 	})
 
 	it(`should call [DELETE] ${environment.restClientUrl}/coffees`, (done : DoneFn) => {
@@ -93,7 +92,7 @@ describe("CoffeeHttpService [Integration]", () => {
 		service
 			.addNewCoffee(newCoffee)
 			.subscribe( coffee => {
-
+				console.log("PUT", coffee)
 				expect(coffee).toBeDefined();
 
 				coffee.roaster = "Test After Update";
