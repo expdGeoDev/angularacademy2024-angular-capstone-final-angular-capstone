@@ -13,24 +13,7 @@ import { NgSwitch, NgSwitchCase } from '@angular/common';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'angular-capstone';
-	optionModal=0;
-	option = '';
-	titleModal='';
 
-	openModal(){
-		const modelDiv= document.getElementById('myModal');
-		if(modelDiv != null){
-			modelDiv.style.display='block';
-			this.titleModal = 'Delete Item';
-			this.optionModal=2;
-		}
-	}
-	closeModal(){
-		const modelDiv= document.getElementById('myModal');
-		if(modelDiv != null){
-			modelDiv.style.display='none';
-		}
-	}
+
 
 }
