@@ -18,13 +18,18 @@ export class AppComponent {
 	option = '';
 	titleModal='';
 
-	openModal(){
+	openModal(op:number){
 		const modelDiv= document.getElementById('myModal');
-		if(modelDiv != null){
-			modelDiv.style.display='block';
-			this.titleModal = 'Delete Item';
-			this.optionModal=2;
-		}
+			if (modelDiv != null) {
+				modelDiv.style.display = 'block';
+				if(op==1) {
+					this.titleModal = 'Add Item';
+					this.optionModal = 1;
+				}else if(op==2){
+					this.titleModal = 'Delete Item';
+					this.optionModal = 2;
+				}
+			}
 	}
 	closeModal(){
 		const modelDiv= document.getElementById('myModal');
