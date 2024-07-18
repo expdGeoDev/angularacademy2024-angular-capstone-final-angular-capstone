@@ -1,14 +1,17 @@
 import {AddUpdateFormComponent} from "./add-update-form/add-update-form.component";
 import {CoffeeHttpService} from "./coffee-http.service";
 import {Ng2StateDeclaration, Transition} from "@uirouter/angular";
-import {AddCoffeeButtonComponent} from "./add-coffee-button/add-coffee-button.component";
+import { DetailsComponent } from "./details/details.component";
 
 export const routerStates = [
 	{
-		name: 'add-coffee-button',
-		url: "/add",
-		component: AddCoffeeButtonComponent,
+		name: 'details',
+		url: '/details',
+		component: DetailsComponent,
+		label: 'Details View',
 	},
+	
+	
 	{
 		name: 'add-update-form',
 		url: '/add-update-form',
