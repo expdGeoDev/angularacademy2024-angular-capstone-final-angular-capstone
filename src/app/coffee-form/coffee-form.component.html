@@ -1,13 +1,9 @@
-<div class="modal-header">
-	<h1 class="modal-title fs-5" id="exampleModalLabel">Add Coffee</h1>
-	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-</div>
 <form>
 	<!-- Coffee Brand -->
 	<div class="form-group p-3">
-		<label id="coffeeRoster">Roster*:</label>
-		<input type="text" class="form-control d-block" id="roster"
-					 aria-describedby="coffeeRosterHelp" placeholder="Enter Coffee Roster" />
+		<label id="coffeeRoaster">Roaster*:</label>
+		<input type="text" class="form-control d-block" id="roaster"
+					 aria-describedby="coffeeRoasterHelp" placeholder="Enter Coffee Roaster" />
 		<div class="invalid-feedback d-block">Brand is Required
 		</div>
 		<div class="valid-feedback d-block">This field is valid
@@ -16,7 +12,7 @@
 
 	<!-- Coffee Variety -->
 	<div class="form-group p-3">
-		<label id="coffeeVariety">Variety*:</label>
+		<label id="coffeeVariety">Variety:</label>
 		<input type="text" class="form-control d-block" id="variety"
 					 aria-describedby="coffeeVarietyHelp" placeholder="Enter Coffee Variety" />
 	</div>
@@ -34,7 +30,7 @@
 	<!-- Rost Type -->
 	<div class="form-group p-3">
 		<select class="form-select form-select-sm" aria-label="coffee rost">
-			<option value="Select Rost" selected></option>
+			<option selected>Open this select menu</option>
 			<option value="Light">Light</option>
 			<option value="Medium">Medium</option>
 			<option value="Dark">Dark</option>
@@ -44,7 +40,7 @@
 	<!-- Format -->
 	<div class="form-group p-3">
 		<select class="form-select form-select-sm" aria-label="format">
-			<option value="Select Rost" selected></option>
+			<option selected>Open this select menu</option>
 			<option value="Light">K-pod</option>
 			<option value="Medium">Ground</option>
 			<option value="Dark">Beans</option>
@@ -53,13 +49,13 @@
 
 	<!-- Grind Level -->
 	<div class="form-group p-3">
-		<label for="grindRange">Grind Level:</label>
+		<label for="grindRange">Grind Level: </label>
 		<input type="range" class="form-range" min="1" max="10" step="1" id="grindRange" value="1" />
 	</div>
 
 	<!-- Origin -->
 	<div class="form-group p-3">
-		<label id="coffeeOrigin">Origin*:</label>
+		<label id="coffeeOrigin">Origin:</label>
 		<input type="text" class="form-control d-block" id="origin"
 					 aria-describedby="coffeeOriginHelp" placeholder="Enter Coffee Origin" />
 	</div>

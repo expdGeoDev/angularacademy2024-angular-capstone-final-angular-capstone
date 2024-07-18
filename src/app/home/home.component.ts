@@ -29,7 +29,7 @@ export class HomeComponent {
 		if (modelDiv != null) {
 			modelDiv.style.display = 'block';
 			if (op == 1) {
-				this.titleModal = 'Add Item';
+				this.titleModal = 'Add Coffee';
 				this.optionModal = 1;
 			} else if (op == 2) {
 				this.titleModal = 'Delete Item';
