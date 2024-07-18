@@ -1,8 +1,7 @@
-<<<<<<< HEAD
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../env/env';
-import { IFilter, Coffee } from "../common/coffee-model";
+import { Coffee } from "../common/coffee-model";
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -49,5 +48,5 @@ export class CoffeeHttpService {
 		return this.client
 			.delete<void>(`${environment.restClientUrl}/coffees/${id}`)
 	}
+
 }
-	}
