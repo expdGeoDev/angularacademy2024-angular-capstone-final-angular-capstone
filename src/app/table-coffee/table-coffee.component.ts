@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { NgClass, NgForOf, NgIf, NgSwitchCase } from '@angular/common';
+import { AsyncPipe, NgClass, NgForOf, NgIf, NgSwitchCase } from '@angular/common';
 import { CoffeeDataService } from '../services/coffee-data.service';
 import { Coffee } from '../common/coffee-model';
 import { CoffeeHttpService } from '../services/coffee-http.service';
@@ -21,6 +21,7 @@ import { map } from 'rxjs';
 		DeleteCoffeeComponent,
 		NgSwitchCase,
 		DetailsViewCoffeeComponent,
+		AsyncPipe,
 	],
   templateUrl: './table-coffee.component.html',
   styleUrl: './table-coffee.component.css'
