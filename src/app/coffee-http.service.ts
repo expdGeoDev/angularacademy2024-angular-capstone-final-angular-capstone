@@ -11,8 +11,9 @@ export class CoffeeHttpService {
 	constructor(private client: HttpClient) {}
 
 	getAllBeans(): Observable<Coffee[]> {
-		return this.client.get<Coffee[]>(`${this.baseUrl}/coffee`);
+		return this.client.get<Coffee[]>(`${this.baseUrl}/coffees`);
 	}
+
 
 	findBySearchString(search: string): Observable<Coffee[]> | undefined {
 		return this.client.get<Coffee[]>(`${this.baseUrl}/coffee?roaster_like=${search}|roast_like=${search}|variety_like=${search}|format_like=${search}|tastingNotes_like=${search}`);
