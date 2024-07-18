@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
-import { Coffee } from '../interface/coffee';
+// import { Coffee } from '../interface/coffee';
+// import { Coffee } from '../../data/coffee'
+
+
 import { ApiService } from '../services/api.service';
 import { NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { PopupComponent} from '../popup/popup.component';
+import { CoffeeHttpService } from '../coffee-http.service';
+import { Coffee } from '../../data/coffee-data';
+
 // import { RouterModule, Routes } from '@angular/router';
 // import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
-  selector: 'app-testcomponent',
+  selector: 'app-coffeelist',
   standalone: true,
 	imports: [
 		HeaderComponent,
@@ -19,21 +25,22 @@ import { PopupComponent} from '../popup/popup.component';
 		FormsModule,
 		PopupComponent,
 	],
-  templateUrl: './testcomponent.component.html',
-  styleUrl: './testcomponent.component.css'
+  templateUrl: './list.component.html',
+  styleUrl: './list.component.css'
 })
 
-export class TestcomponentComponent implements OnInit {
+export class ListComponent implements OnInit {
 
 	stage: Coffee []=[];
 	coffee: Coffee []=[];
+
 	selectedOption : string = '';
 	count: any;
 	delFlag : boolean = true;
 
 	sortingoptions: string[] = ['Brand (A-Z)', 'Brand (Z-A)'];
 
-	constructor(private apiService:ApiService, private http: HttpClient) { }
+	constructor(private apiService:ApiService, private http: HttpClient, private httpService: CoffeeHttpService) { }
 	ngOnInit(): void {
 		this.apiService.coffee().subscribe(response => {
 			this.coffee = response;
@@ -67,27 +74,15 @@ export class TestcomponentComponent implements OnInit {
 	}
 
 	clickDelete(cid : any) {
-
-		if(this.delFlag) {
-			const todelete = this.coffee.filter(obj => obj.id == cid)
-			var data = {
-				id: cid,
-				active: true,
-				variety: todelete[0].variety,
-				size: todelete[0].size,
-				roast: todelete[0].roast,
-				roaster: todelete[0].roaster,
-				format: todelete[0].format,
-				grind: todelete[0].grind,
-				origin: todelete[0].origin,
-				singleOrigin: todelete[0].singleOrigin,
-				tastingNotes: todelete[0].tastingNotes,
-			}
-			this.apiService.deleteCoffee(data, cid).subscribe(response => {
-				console.log(response.observer);
+			console.log(cid);
+			const todelete = this.coffee.filter(obj => obj.id == cid)[0];
+			todelete.active = false;
+			console.log(todelete);
+			this.httpService.updateCoffee(todelete).subscribe(response => {
+				console.log(response.status);
 				// setTimeout(() => window.location.reload(), 1000);
 			});
-		}
+
 	}
 
 	getdeleteflag(deleteFlag : boolean) {
@@ -96,3 +91,23 @@ export class TestcomponentComponent implements OnInit {
 
 
 }
+
+
+
+
+
+
+
+// var data = {
+// 	id: cid,
+// 	active: false,
+// 	variety: todelete[0].variety,
+// 	size: todelete[0].size,
+// 	roast: todelete[0].roast,
+// 	roaster: todelete[0].roaster,
+// 	format: todelete[0].format,
+// 	grind: todelete[0].grind,
+// 	origin: todelete[0].origin,
+// 	singleOrigin: todelete[0].singleOrigin,
+// 	tastingNotes: todelete[0].tastingNotes,
+// }

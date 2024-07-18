@@ -1,8 +1,7 @@
 import {AddUpdateFormComponent} from "./add-update-form/add-update-form.component";
 import {CoffeeHttpService} from "./coffee-http.service";
 import {Ng2StateDeclaration, Transition} from "@uirouter/angular";
-import { CoffeelistComponent } from './coffeelist/coffeelist.component';
-import { TestcomponentComponent } from './testcomponent/testcomponent.component';
+import { ListComponent } from './list/list.component';
 import { PopupComponent } from './popup/popup.component';
 
 export const routerStates = [
@@ -27,18 +26,10 @@ export const routerStates = [
 	{
 		name: 'app-coffeelist',
 		url: '/coffees',
-		component: CoffeelistComponent,
+		component: ListComponent,
 		label: 'List of Coffees',
 	},
 
-
-
-	{
-		name: 'app-testcomponent',
-		url: '/test',
-		component: TestcomponentComponent,
-		label: 'Test Page',
-	},
 	{
 		name: 'app-popup',
 		url: '/popup',

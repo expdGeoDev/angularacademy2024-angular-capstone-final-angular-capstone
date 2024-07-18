@@ -3,8 +3,7 @@ import { routerStates } from "./app.routes";
 import { UIRouterModule } from "@uirouter/angular";
 import { HeaderComponent } from './header/header.component';
 import { UtilitybarComponent } from './utilitybar/utilitybar.component';
-import { CoffeelistComponent } from './coffeelist/coffeelist.component';
-import { TestcomponentComponent } from './testcomponent/testcomponent.component';
+import { ListComponent } from './list/list.component';
 
 
 @Component({
@@ -15,8 +14,7 @@ import { TestcomponentComponent } from './testcomponent/testcomponent.component'
 		UIRouterModule,
 		HeaderComponent,
 		UtilitybarComponent,
-		CoffeelistComponent,
-		TestcomponentComponent,
+		ListComponent,
 	],
 	styleUrl: './app.component.css',
 })

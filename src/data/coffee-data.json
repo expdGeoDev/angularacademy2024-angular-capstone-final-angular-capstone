@@ -1,21 +1,21 @@
 {
   "coffees": [
     {
-      "active": true,
-      "roaster": "Tim Horton's",
+      "id": "2",
+      "active": false,
       "variety": null,
       "size": 20,
       "roast": "dark",
+      "roaster": "Tim Horton's",
       "format": "k-pod",
       "grind": 4,
       "origin": null,
       "singleOrigin": false,
-      "tastingNotes": null,
-      "id": "2"
+      "tastingNotes": null
     },
     {
       "id": "3",
-      "active": true,
+      "active": false,
       "roaster": "Paper Plane",
       "variety": null,
       "size": 8,
