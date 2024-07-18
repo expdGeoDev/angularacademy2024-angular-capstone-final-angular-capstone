@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { PopupComponent} from '../popup/popup.component';
 import { CoffeeHttpService } from '../coffee-http.service';
 import { Coffee } from '../../data/coffee-data';
+import {UIRouterModule} from "@uirouter/angular";
 
 // import { RouterModule, Routes } from '@angular/router';
 // import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,6 +25,7 @@ import { Coffee } from '../../data/coffee-data';
 		NgForOf,
 		FormsModule,
 		PopupComponent,
+		UIRouterModule,
 	],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
@@ -68,9 +70,6 @@ export class ListComponent implements OnInit {
 	}
 
 	clickView(id : any) {
-	}
-
-	clickEdit(id : any) {
 	}
 
 	clickDelete(cid : any) {
