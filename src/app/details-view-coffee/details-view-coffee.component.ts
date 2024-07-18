@@ -1,6 +1,5 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { JsonPipe, NgIf } from '@angular/common';
-import { loadModuleFactory } from '@uirouter/angular';
 import { Coffee } from '../common/coffee-model';
 
 @Component({

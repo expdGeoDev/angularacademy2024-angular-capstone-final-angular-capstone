@@ -3,7 +3,6 @@ import { NgClass, NgForOf, NgIf, NgSwitchCase } from '@angular/common';
 import { CoffeeDataService } from '../services/coffee-data.service';
 import { Coffee } from '../common/coffee-model';
 import { CoffeeHttpService } from '../services/coffee-http.service';
-import { Observable } from 'rxjs';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CoffeeFormComponent } from '../coffee-form/coffee-form.component';
 import { DeleteCoffeeComponent } from '../delete-coffee/delete-coffee.component';
