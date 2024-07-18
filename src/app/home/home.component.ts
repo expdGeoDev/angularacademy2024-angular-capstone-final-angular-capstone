@@ -22,15 +22,22 @@ export class HomeComponent {
 	optionModal=0;
 	option = '';
 	titleModal='';
-
-	openModal(){
-		const modelDiv= document.getElementById('myModal');
-		if(modelDiv != null){
-			modelDiv.style.display='block';
-			this.titleModal = 'Delete Item';
-			this.optionModal=2;
+	//'myModal'
+	//'Delete Item'
+	openModal(op:number) {
+		const modelDiv = document.getElementById('myModal');
+		if (modelDiv != null) {
+			modelDiv.style.display = 'block';
+			if (op == 1) {
+				this.titleModal = 'Add Item';
+				this.optionModal = 1;
+			} else if (op == 2) {
+				this.titleModal = 'Delete Item';
+				this.optionModal = 2;
+			}
 		}
 	}
+
 	closeModal(){
 		const modelDiv= document.getElementById('myModal');
 		if(modelDiv != null){
