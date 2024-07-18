@@ -1,1 +1,35 @@
-<p>coffee-deleted works!</p>
+
+<div class="container-md container-fluid">
+	<br>
+	<h1>Deleted Coffees</h1>
+<table class="table table-hover">
+	<!-- Columns -->
+	<thead>
+	<tr>
+		<th> Id </th>
+		<th> Name </th>
+		<th> Roast </th>
+		<th> Format </th>
+		<th>Reactivate</th>
+	</tr>
+	</thead>
+	<!-- Columns -->
+	<!-- Data -->
+	<tbody *ngFor="let data of coffeeData |  paginate: { itemsPerPage: 10, currentPage: p }">
+	<tr>
+		<td> {{data.id}}</td>
+		<td> {{data.roaster}} </td>
+		<td> {{data.size}} </td>
+		<td> {{data.format}} </td>
+		<td><div class="form-check form-switch">
+			<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [checked]="data.active" (change)="changeActivation(data, $event)">
+			<label class="form-check-label" for="flexSwitchCheckDefault">{{data.active}}</label>
+		</div></td>
+	</tr>
+	</tbody>
+	<!-- Data -->
+</table>
+	<div class="text-center">
+		<pagination-controls (pageChange)="p = $event" ></pagination-controls>
+	</div>
+</div>
