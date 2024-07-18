@@ -1,0 +1,7 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<form class="search" (ngSubmit)="onSubmit()" style="margin:auto;max-width:300px">
+	<div class="input-group">
+		<input name="searchString" type="text" placeholder="Search" [(ngModel)]="searchString">
+		<button type="submit"><i class="fa fa-search"></i></button>
+	</div>
+</form>
