@@ -25,8 +25,6 @@ import { DetailsViewCoffeeComponent } from '../details-view-coffee/details-view-
   styleUrl: './table-coffee.component.css'
 })
 export class TableCoffeeComponent implements OnInit{
-	expandContent = true;
-	selectedRow:string = '';
 	p=0;
 	coffeeRow?:Coffee;
 
@@ -43,9 +41,6 @@ export class TableCoffeeComponent implements OnInit{
 				console.log(this.coffeeData);
 			}
 			})
-	}
-	findDetails(data:any){
-		//return this.coffeeExpanded.filter(x=>x.whoseData==data.id);
 	}
 
 expanded: boolean =false;
@@ -65,7 +60,7 @@ expanded: boolean =false;
 			modelDiv.style.display='block';
 		}
 		//this.iDFromTable.emit(data.id);
-		var idValue = +data.id;
+		let idValue = +data.id;
 		this.coffeeRow =  this.getDetailsById(idValue);
 		console.log("Stop   "+ this.coffeeRow?.roaster);
 		console.log('Id: '+data.id);

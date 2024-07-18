@@ -11,13 +11,11 @@
 	</nav>
 	<br>
 
-
 <div class="container">
 	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Coffee</button>
 </div>
 <div class="container">
 	<app-table-coffee (iDFromTable)="title = $event" ></app-table-coffee>
-	<app-coffee-form></app-coffee-form>
 </div>
 <div class="container">
 	<button type="button" class="btn btn-primary"  (click)="openModal()">

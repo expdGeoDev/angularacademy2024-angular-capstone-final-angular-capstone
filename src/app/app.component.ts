@@ -23,7 +23,7 @@ export class AppComponent {
 		if(modelDiv != null){
 			modelDiv.style.display='block';
 			this.titleModal = 'Delete Item';
-			this.optionModal=1;
+			this.optionModal=2;
 		}
 	}
 	closeModal(){
