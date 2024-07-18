@@ -11,7 +11,7 @@
 							class="nav-item"
 						>
 							<a
-								uiSref=""
+								uiSref="home"
 								uiSrefActive="active"
 								class="nav-link"
 							>
@@ -36,14 +36,14 @@
 	</div>
 	<br>
 
-
+	<ui-view></ui-view>
 <div class="container">
 	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Coffee</button>
 </div>
 <div class="container">
 	<app-table-coffee (iDFromTable)="title = $event" ></app-table-coffee>
 	<app-coffee-form></app-coffee-form>
-	<ui-view></ui-view>
+
 </div>
 <div class="container">
 	<button type="button" class="btn btn-primary"  (click)="openModal()">
@@ -60,11 +60,11 @@
 			</div>
 			<div class="modal-body">
 				<app-delete-coffee [title]="title"></app-delete-coffee>
-
 			</div>
 		</div>
 	</div>
 </div>
+
 <!-- Footer-->
 <footer class="py-3 my-4">
 	<ul class="nav justify-content-center border-bottom pb-3 mb-3">
