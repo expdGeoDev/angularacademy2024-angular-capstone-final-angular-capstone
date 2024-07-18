@@ -42,28 +42,31 @@
 </div>
 <div class="container">
 	<app-table-coffee (iDFromTable)="title = $event" ></app-table-coffee>
-	<app-coffee-form></app-coffee-form>
-
 </div>
 <div class="container">
 	<button type="button" class="btn btn-primary"  (click)="openModal()">
 		Delete
 	</button>
 </div>
-<!-- Modal -->
-<div class="modal" id="myModal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">{{ option }}</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
-			</div>
-			<div class="modal-body">
-				<app-delete-coffee [title]="title"></app-delete-coffee>
+
+	<!-- Modal -->
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">{{ titleModal }}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
+				</div>
+				<div class="modal-body">
+					<ng-container [ngSwitch]="optionModal">
+						<app-delete-coffee *ngSwitchCase=1 [title]="title"></app-delete-coffee>
+						<app-coffee-form *ngSwitchCase=2 [title]="title"></app-coffee-form>
+					</ng-container>
+				</div>
+
 			</div>
 		</div>
 	</div>
-</div>
 
 <!-- Footer-->
 <footer class="py-3 my-4">
@@ -71,7 +74,6 @@
 	</ul>
 	<p class="text-center text-body-secondary">Yukon Coffee Shop © 2024</p>
 </footer>
-
 
 </main>
 

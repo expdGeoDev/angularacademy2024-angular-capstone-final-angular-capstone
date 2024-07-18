@@ -1,10 +1,10 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { CoffeeHttpService } from './coffee-http.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from '../env/env';
 
-describe('DataHttpServiceService', () => {
+describe('CoffeeHttpService', () => {
 
 	let service: CoffeeHttpService
 	let httpTestingController: HttpTestingController;
@@ -37,17 +37,17 @@ describe('DataHttpServiceService', () => {
 		req.flush(
 			[
 				{
-					"id": 2,
-					"active": true,
-					"roaster": "Tim Horton's",
-					"variety": null,
-					"size": 20,
-					"roast": "dark",
-					"format": "k-pod",
-					"grind": 4,
-					"origin": null,
-					"singleOrigin": false,
-					"tastingNotes": null
+					id: 2,
+					active: true,
+					roaster: "Tim Horton's",
+					variety: null,
+					size: 20,
+					roast: "dark",
+					format: "k-pod",
+					grind: 4,
+					origin: null,
+					singleOrigin: false,
+					tastingNotes: null
 				}
 			]
 		)
@@ -60,24 +60,21 @@ describe('DataHttpServiceService', () => {
 
 		service.addNewCoffee(
 			{
-				"id": 2,
-				"active": true,
-				"roaster": "Tim Horton's",
-				"variety": null,
-				"size": 20,
-				"roast": "dark",
-				"format": "k-pod",
-				"grind": 4,
-				"origin": null,
-				"singleOrigin": false,
-				"tastingNotes": null
+				id: 2,
+				active: true,
+				roaster: "Tim Horton's",
+				variety: null,
+				size: 20,
+				roast: "dark",
+				format: "k-pod",
+				grind: 4,
+				origin: null,
+				singleOrigin: false,
+				tastingNotes: null
 			}
-		);
+		).subscribe();
 
 		const req = httpTestingController.expectOne(`${environment.restClientUrl}/coffees`);
 		expect(req.request.method).toBe('POST');
 	})
-
 });
-
-

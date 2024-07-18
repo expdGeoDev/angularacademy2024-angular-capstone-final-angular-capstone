@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../env/env';
-import { IFilter, Coffee } from "../common/coffee-model";
+import { Coffee } from "../common/coffee-model";
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,25 +9,44 @@ import { Observable } from 'rxjs';
 })
 export class CoffeeHttpService {
 
-	private headers:HttpHeaders = new HttpHeaders();
+	private headers = {
+		Accept: 'application/json',
+		'Cache-Control': 'no-cache',
+		'Content-Type': 'application/json',
+	};
 
-  constructor(private client: HttpClient) {
-		this.headers.set( 'Content-Type', 'application/json')
-		this.headers.set('Cache-Control', 'no-cache');
-	}
+  constructor(private client: HttpClient) {}
 
 	getAllCoffees(): Observable<Coffee[]>{
-		console.log("start");
-		return this.client.get<Coffee[]>(`${environment.restClientUrl}/coffees`);
+		return this.client
+			.get<Coffee[]>(`${environment.restClientUrl}/coffees`);
 	}
 
-	addNewCoffee(coffee: Coffee) {
+	getCoffeeById(id: number): Observable<Coffee>{
+		return this.client
+			.get<Coffee>(`${environment.restClientUrl}/coffees/${id}`)
+	}
 
-		this.client
-			.post(
+	addNewCoffee(coffee: Coffee): Observable<Coffee> {
+		return this.client
+			.post<Coffee>(
 				`${environment.restClientUrl}/coffees`,
-				JSON.stringify(coffee), {}
+				JSON.stringify(coffee),
+				{ headers: this.headers }
 			)
-			.subscribe();
 	}
+
+	updateCoffee(toUpdate: Coffee): Observable<Coffee>{
+		return this.client.put<Coffee>(
+			`${environment.restClientUrl}/coffees/${toUpdate.id}`,
+			JSON.stringify(toUpdate),
+			{ headers: this.headers }
+		)
+	}
+
+	deleteCoffee(id: number): Observable<void>{
+		return this.client
+			.delete<void>(`${environment.restClientUrl}/coffees/${id}`)
+	}
+
 }

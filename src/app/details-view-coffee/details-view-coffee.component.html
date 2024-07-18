@@ -1,0 +1,45 @@
+<div>
+	<!--Card -->
+	<div class="card">
+			<div class="card-header">
+				<i class="bi bi-cup-hot-fill me-2"></i> <strong>Information</strong>
+			</div>
+					<div class="card-body" style="background-image: linear-gradient(rgba(255,255,255,1), rgba(244,244,244,1));">
+						<h5 class="card-title"> Roaster: {{ dataRow?.roaster }}</h5>
+						<div class="container text-center">
+							<div class="row border border-secondary p-2 border-opacity-10">
+								<div class="col text-end col-lg-3">
+									<p><strong>id: </strong></p>
+									<p><strong>Variety:</strong></p>
+									<p><strong>Size: </strong></p>
+									<p><strong>Roast:</strong></p>
+									<p><strong>Format: </strong></p>
+									<p><strong>Grind:</strong></p>
+									<p><strong>Origin:</strong></p>
+									<p><strong>Single Or Origin?:</strong> </p>
+								</div>
+								<div class="col text-start">
+									<p>{{dataRow?.id}}</p>
+									<p>{{dataRow?.variety}}</p>
+									<p>{{dataRow?.size}}</p>
+									<p>{{dataRow?.roast}}</p>
+									<p>{{dataRow?.format}}</p>
+									<p>{{dataRow?.grind}}</p>
+									<p>{{dataRow?.origin}}</p>
+									<p>{{dataRow?.singleOrigin}}</p>
+								</div>
+								<div>
+									<p class="text-start"> <strong>Tasting Notes: </strong></p>
+									<textarea class="form-control" id="exampleFormControlTextarea1" rows="2" readonly placeholder="{{dataRow?.tastingNotes}}"></textarea>
+									<br>
+								</div>
+							</div>
+				</div>
+		</div>
+	</div>
+	<div  class="text-end">
+		<br>
+		<button class="btn btn-primary" (click)="closeModal()"> Exit</button>
+	</div>
+</div>
+<!--Card -->

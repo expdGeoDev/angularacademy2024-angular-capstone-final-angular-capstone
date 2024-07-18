@@ -1,8 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { NgClass, NgForOf, NgIf, NgSwitchCase } from '@angular/common';
 import { CoffeeDataService } from '../services/coffee-data.service';
 import { Coffee } from '../common/coffee-model';
 import { CoffeeHttpService } from '../services/coffee-http.service';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CoffeeFormComponent } from '../coffee-form/coffee-form.component';
+import { DeleteCoffeeComponent } from '../delete-coffee/delete-coffee.component';
+import { DetailsViewCoffeeComponent } from '../details-view-coffee/details-view-coffee.component';
 
 @Component({
   selector: 'app-table-coffee',
@@ -11,59 +15,22 @@ import { CoffeeHttpService } from '../services/coffee-http.service';
 		NgForOf,
 		NgIf,
 		NgClass,
+		NgxPaginationModule,
+		CoffeeFormComponent,
+		DeleteCoffeeComponent,
+		NgSwitchCase,
+		DetailsViewCoffeeComponent,
 	],
   templateUrl: './table-coffee.component.html',
   styleUrl: './table-coffee.component.css'
 })
 export class TableCoffeeComponent implements OnInit{
-	expandContent = true;
-	selectedRow:string = '';
-	coffeeRow = [{
-		'id': '1',
-		'Name': 'Starbucks',
-		'Roast': 'Dark',
-		'Format': 'K-pod',
-		'expanded':false
-	}, {
-		'id': '2',
-		'Name': 'Tim Hortons',
-		'Roast': 'Dark',
-		'Format': 'K-pod',
-		'expanded':false
-	}, {
-		'id': '3',
-		'Name': 'Dunkin',
-		'Roast': 'Dark',
-		'Format': 'K-pod',
-		'expanded':false
-	},
-	]
-	coffeeExpanded = [{
-		'whoseData': '1',
-		'datades': {
-			'size': '32 oz',
-			'grind': '15',
-			'origin': 'Colombia'
-		}
-	}, {
-		'whoseData': '2',
-		'datades': {
-			'size': '32 oz',
-			'grind': '15',
-			'origin': 'Mexico'
-		}
-	}, {
-		'whoseData': '3',
-		'datades': {
-			'size': '32 oz',
-			'grind': '15',
-			'origin': 'Ecuador'
-		}
-	}
-	]
+	p=0;
+	coffeeRow?:Coffee;
 
 	coffeeData! : Coffee[];
-
+	constructor(private coffeeService: CoffeeDataService, private coffeeHttp: CoffeeHttpService) {
+	}
 	ngOnInit() {
 		// this.coffeeData = this.coffeeService.getAllCoffee();
 		//
@@ -74,14 +41,6 @@ export class TableCoffeeComponent implements OnInit{
 				console.log(this.coffeeData);
 			}
 			})
-
-	}
-
-	constructor(private coffeeService: CoffeeDataService, private coffeeHttp: CoffeeHttpService) {
-	}
-
-	findDetails(data:any){
-		return this.coffeeExpanded.filter(x=>x.whoseData==data.id);
 	}
 
 expanded: boolean =false;
@@ -93,6 +52,30 @@ expanded: boolean =false;
 			this.iDFromTable.emit('');
 		}
 		return this.expanded;
+	}
+
+	getDetailsFromCoffee(data:any){
+		const modelDiv= document.getElementById('myModalDetails');
+		if(modelDiv != null){
+			modelDiv.style.display='block';
+		}
+		//this.iDFromTable.emit(data.id);
+		let idValue = +data.id;
+		this.coffeeRow =  this.getDetailsById(idValue);
+		console.log("Stop   "+ this.coffeeRow?.roaster);
+		console.log('Id: '+data.id);
+	}
+
+	closeModal(){
+		const modelDiv= document.getElementById('myModalDetails');
+		if(modelDiv != null){
+			modelDiv.style.display='none';
+		}
+	}
+
+	getDetailsById(id:number){
+		console.log(this.coffeeData.find(x=>x.id==id));
+		return this.coffeeData.find(x=>x.id==id);
 	}
 
 	@Output() iDFromTable = new EventEmitter<string>();
