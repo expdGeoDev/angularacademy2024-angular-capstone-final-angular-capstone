@@ -1,81 +1,126 @@
-<form>
-	<!-- Coffee Brand -->
+<form #addNewCoffeeForm="ngForm" (ngSubmit)="submit()">
+
+	<!-- Coffee Roaster -->
 	<div class="form-group p-3">
 		<label id="coffeeRoaster">Roaster*:</label>
-		<input type="text" class="form-control d-block" id="roaster"
-					 aria-describedby="coffeeRoasterHelp" placeholder="Enter Coffee Roaster" />
-		<div class="invalid-feedback d-block">Brand is Required
-		</div>
-		<div class="valid-feedback d-block">This field is valid
-		</div>
+		<input
+				class="form-control d-block"
+				type="text"
+				name="roaster"
+				placeholder="Enter Coffee Roaster"
+				minlength="2"
+				required
+				#roaster="ngModel"
+				[(ngModel)]="coffee.roaster"
+			>
+			<em [hidden]="roaster.valid || roaster.pristine" class="invalid-feedback d-block"
+			>Invalid Roaster Value!</em>
 	</div>
 
 	<!-- Coffee Variety -->
 	<div class="form-group p-3">
 		<label id="coffeeVariety">Variety:</label>
-		<input type="text" class="form-control d-block" id="variety"
-					 aria-describedby="coffeeVarietyHelp" placeholder="Enter Coffee Variety" />
+		<input
+			class="form-control d-block"
+			type="text"
+			name="variety"
+			placeholder="Enter Coffee Variety"
+			minlength="2"
+			required
+			#roaster="ngModel"
+			[(ngModel)]="coffee.variety"
+		>
 	</div>
 
 	<!-- Coffee Size -->
 	<div class="form-group p-3">
+		<label id="coffeeSize">Size:</label>
 		<select class="form-select form-select-sm" aria-label="coffee size">
-			<option selected>Open this select menu</option>
-			<option value="1">8oz</option>
-			<option value="2">16oz</option>
-			<option value="3">32oz</option>
+			<option value="">Open this select menu</option>
+			<option *ngFor="let sizeitem of size" [value]="sizeitem">{{sizeitem.toString() | titlecase}} oz</option>
 		</select>
 	</div>
 
 	<!-- Rost Type -->
 	<div class="form-group p-3">
+		<label id="coffeeRoast">Roast:</label>
 		<select class="form-select form-select-sm" aria-label="coffee rost">
-			<option selected>Open this select menu</option>
-			<option value="Light">Light</option>
-			<option value="Medium">Medium</option>
-			<option value="Dark">Dark</option>
+			<option value="">Open this select menu</option>
+			<option *ngFor="let roastitem of roast" [value]="roastitem">{{roastitem | titlecase}}</option>
 		</select>
 	</div>
 
 	<!-- Format -->
 	<div class="form-group p-3">
+		<label id="coffeeFormat">Format:</label>
 		<select class="form-select form-select-sm" aria-label="format">
-			<option selected>Open this select menu</option>
-			<option value="Light">K-pod</option>
-			<option value="Medium">Ground</option>
-			<option value="Dark">Beans</option>
+			<option value="">Open this select menu</option>
+			<option *ngFor="let formatitem of format" [value]="formatitem">{{formatitem | titlecase}}</option>
 		</select>
 	</div>
 
 	<!-- Grind Level -->
 	<div class="form-group p-3">
-		<label for="grindRange">Grind Level: </label>
-		<input type="range" class="form-range" min="1" max="10" step="1" id="grindRange" value="1" />
+			<label class="form-label" for="elements">Grind Level: {{getCurrentValue()}}</label>
+			<ul class="d-flex justify-content-between form-control" id='elements'>
+				<li class="list-inline-item"><p id="minValue">{{grindLevelList[0]}}</p></li>
+				<li class="list-inline-item">
+					<input type="range"
+								 class="form-range"
+								 #ctmRng
+								 id="rng"
+								 min=0
+								 max="6"
+								 (input)="setValueOnIndex(ctmRng.value)"
+					>
+				</li>
+				<li class="list-inline-item"><p id="maxValue">{{grindLevelList[6]}}</p></li>
+			</ul>
 	</div>
 
 	<!-- Origin -->
 	<div class="form-group p-3">
 		<label id="coffeeOrigin">Origin:</label>
-		<input type="text" class="form-control d-block" id="origin"
-					 aria-describedby="coffeeOriginHelp" placeholder="Enter Coffee Origin" />
+		<input
+			class="form-control d-block"
+			type="text"
+			name="origin"
+			placeholder="Enter Coffee Origin"
+			minlength="2"
+			required
+			#roaster="ngModel"
+			[(ngModel)]="coffee.origin"
+		>
 	</div>
 
 	<!-- Single Origin -->
 	<div class="form-group p-3">
-		<label class="form-check-label" for="singleOriginSwitch">Single Origin: </label>
+		<label class="form-check-label" for="singleOriginCheckBox">Single Origin: </label>
 		<div class="form-check form-switch ">
-			<input class="form-check-input" type="checkbox" id="singleOriginSwitch" />
+			<input type="checkbox"
+						 name="singleOriginCheckBox"
+						 id="singleOriginCheckBox"
+						 class="form-check-input"
+						 [(ngModel)]="coffee.singleOrigin"
+			>
 		</div>
 	</div>
 
 	<!-- Flavor Notes -->
 	<div class="form-group p-3">
 		<label for="flavorNotes">Flavor Notes:</label>
-		<textarea class="form-control" id="flavorNotes" rows="3"
-							placeholder="Enter flavor notes..."></textarea>
+		<textarea class="form-control" id="flavorNotes" name="flavorNotes"
+							cols="30"
+							[(ngModel)]="coffee.tastingNotes"
+							placeholder="Enter flavor notes..." required></textarea>
 	</div>
 </form>
 <div class="modal-footer">
-	<button type="reset" class="btn btn-danger btn-md me-2">Reset</button>
-	<button type="submit" class="btn btn-primary btn-md">Submit</button>
+	<button type="button"
+					class="btn btn-primary"
+	>Clear All</button>
+	<button type="submit"
+					class="btn btn-success mx-3"
+					[disabled]="!addNewCoffeeForm.form.valid"
+	>Submit</button>
 </div>

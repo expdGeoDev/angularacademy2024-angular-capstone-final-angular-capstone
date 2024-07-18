@@ -35,3 +35,8 @@ export interface IFilter {
 	applyPipe(rawData: Observable<Coffee[]>): Observable<Coffee[]>;
 }
 
+export enum FormType {
+
+	EDIT,
+	ADD
+}

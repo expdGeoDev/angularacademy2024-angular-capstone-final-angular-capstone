@@ -13,7 +13,5 @@ import { NgStyle, NgSwitch, NgSwitchCase } from '@angular/common';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-	image = 'images/home.jpg';
-
 
 }
