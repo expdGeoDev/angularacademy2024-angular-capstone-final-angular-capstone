@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     importProvidersFrom(
       UIRouterModule.forRoot({
-				// states: routes, config: setupUIRouterConfig
+				states: routes
 			})
     ),
   ],
