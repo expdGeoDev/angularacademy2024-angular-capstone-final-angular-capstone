@@ -33,7 +33,7 @@
       "variety": null,
       "size": 8,
       "roast": "medium",
-      "format": "beanss",
+      "format": "beans",
       "grind": 6,
       "origin": null,
       "singleOrigin": false,
@@ -54,7 +54,7 @@
     },
     {
       "id": 5,
-      "active": true,
+      "active": false,
       "roaster": "Eight O'Clock",
       "variety": null,
       "size": 24,
@@ -93,7 +93,7 @@
     },
     {
       "id": 8,
-      "active": true,
+      "active": false,
       "roaster": "Counter Culture",
       "variety": null,
       "size": 16,
