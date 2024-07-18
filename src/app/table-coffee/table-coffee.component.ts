@@ -7,6 +7,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CoffeeFormComponent } from '../coffee-form/coffee-form.component';
 import { DeleteCoffeeComponent } from '../delete-coffee/delete-coffee.component';
 import { DetailsViewCoffeeComponent } from '../details-view-coffee/details-view-coffee.component';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-table-coffee',
@@ -35,10 +36,16 @@ export class TableCoffeeComponent implements OnInit{
 		// this.coffeeData = this.coffeeService.getAllCoffee();
 		//
 		// console.log(this.coffeeData);
-		this.coffeeHttp.getAllCoffees().subscribe(
+		this.coffeeHttp.getAllCoffees().pipe(
+			map(c =>
+				c.filter( r => r.active )
+			)
+		).subscribe(
 			{next:(data)=>{
 				this.coffeeData = data;
-				console.log(this.coffeeData);
+					this.coffeeData.sort((a, b) =>
+						a.id < b.id ? -1 : 1
+					);
 			}
 			})
 	}

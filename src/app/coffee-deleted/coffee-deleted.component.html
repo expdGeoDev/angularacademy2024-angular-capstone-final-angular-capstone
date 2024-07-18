@@ -1,6 +1,7 @@
-<br>
-<h1>Coffee Table</h1>
+
 <div class="container-md container-fluid">
+	<br>
+	<h1>Deleted Coffees</h1>
 <table class="table table-hover">
 	<!-- Columns -->
 	<thead>
@@ -9,7 +10,7 @@
 		<th> Name </th>
 		<th> Roast </th>
 		<th> Format </th>
-		<th>Options</th>
+		<th>Reactivate</th>
 	</tr>
 	</thead>
 	<!-- Columns -->
@@ -20,7 +21,10 @@
 		<td> {{data.roaster}} </td>
 		<td> {{data.size}} </td>
 		<td> {{data.format}} </td>
-		<td>{{data.active}} </td>
+		<td><div class="form-check form-switch">
+			<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [checked]="data.active" (change)="changeActivation(data, $event)">
+			<label class="form-check-label" for="flexSwitchCheckDefault">{{data.active}}</label>
+		</div></td>
 	</tr>
 	</tbody>
 	<!-- Data -->
