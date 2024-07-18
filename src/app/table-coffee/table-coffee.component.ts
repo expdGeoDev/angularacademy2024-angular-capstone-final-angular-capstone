@@ -29,7 +29,7 @@ export class TableCoffeeComponent implements OnInit{
 	expandContent = true;
 	selectedRow:string = '';
 	p=0;
-	coffeeRow:any;
+	coffeeRow?:Coffee;
 
 	coffeeData! : Coffee[];
 	constructor(private coffeeService: CoffeeDataService, private coffeeHttp: CoffeeHttpService) {
@@ -68,7 +68,7 @@ expanded: boolean =false;
 		//this.iDFromTable.emit(data.id);
 		var idValue = +data.id;
 		this.coffeeRow =  this.getDetailsById(idValue);
-		console.log("Stop   "+ this.coffeeRow.roaster);
+		console.log("Stop   "+ this.coffeeRow?.roaster);
 		console.log('Id: '+data.id);
 	}
 
