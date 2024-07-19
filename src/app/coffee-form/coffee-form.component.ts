@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
 import { CoffeeHttpService } from '../services/coffee-http.service';
 import { Coffee, FormType } from '../common/coffee-model';
 import { FormsModule } from '@angular/forms';
@@ -14,17 +14,8 @@ import { NgForOf, TitleCasePipe } from '@angular/common';
   styleUrl: './coffee-form.component.css'
 })
 export class CoffeeFormComponent implements OnInit {
-	private currentValue: number;
+
 	@Input() formType!: FormType
-	constructor(private service: CoffeeHttpService) {
-	this.currentValue = 0;
-	}
-
-	ngOnInit(): void {
-	this.service.getAllCoffees().subscribe(Coffees=> {this.coffeeList = Coffees})
-	}
-	private coffeeList!: Coffee[]
-
 	coffee: Coffee = this.createEmptyCoffee();
 	size: number[] = [8,12,14,16,20,24,]
 	roast: string[] = [ "dark","light","espresso" ]
@@ -38,6 +29,18 @@ export class CoffeeFormComponent implements OnInit {
 		'Fine',
 		'Extra-Fine'
 	]
+
+	private coffeeList!: Coffee[]
+
+	constructor(
+		private service: CoffeeHttpService
+	) {}
+
+	ngOnInit(): void {
+		this.service
+			.getAllCoffees()
+			.subscribe(Coffees=> {this.coffeeList = Coffees})
+	}
 
 	createEmptyCoffee(): Coffee{
 		return{
@@ -56,15 +59,16 @@ export class CoffeeFormComponent implements OnInit {
 	}
 
 	getCurrentValue() {
-		return this.grindLevelList[this.currentValue];
+		return this.grindLevelList[this.coffee.grind];
 	}
 
 	setValueOnIndex(value: string) {
-		this.currentValue = +value;
+		this.coffee.grind = +value;
 	}
 
 	addNewCoffee():void {
 
+		console.log("Entered on add new coffee")
 		this.service
 			.addNewCoffee(this.coffee)
 			.subscribe()
@@ -78,17 +82,37 @@ export class CoffeeFormComponent implements OnInit {
 	}
 
 	submit() {
-		// // switch (this.formType) {
-		// // 	case FormType.ADD:
-		// // 		this.addNewCoffee()
-		// // 		break;
-		// // 	case FormType.EDIT:
-		// // 		this.updateCoffee()
-		// // 		break;
-		// // 	default:
-		// // 		throw "Incorrect Form Type"
-		// }
+		switch (this.formType) {
+			case FormType.ADD:
+				this.addNewCoffee()
+				break;
+			case FormType.EDIT:
+				this.updateCoffee()
+				break;
+			default:
+				throw "Incorrect Form Type"
+		}
+	}
 
-		console.log(this.coffee);
+	setFormat(value: string) {
+
+		if(
+			value === "k-pod" ||
+			value === "ground" ||
+			value === "beans"
+		){
+			this.coffee.format = value;
+		}
+	}
+
+	setRoast(value: string) {
+
+		if(
+			value === "dark" ||
+			value === "light"||
+			value === "espresso"
+		){
+			this.coffee.roast = value;
+		}
 	}
 }

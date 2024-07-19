@@ -1,4 +1,5 @@
-<form #addNewCoffeeForm="ngForm" (ngSubmit)="submit()">
+<form #addNewCoffeeForm="ngForm"
+			(ngSubmit)="submit()">
 
 	<!-- Coffee Roaster -->
 	<div class="form-group p-3">
@@ -35,8 +36,12 @@
 	<!-- Coffee Size -->
 	<div class="form-group p-3">
 		<label id="coffeeSize">Size:</label>
-		<select class="form-select form-select-sm" aria-label="coffee size">
-			<option value="">Open this select menu</option>
+		<select class="form-select form-select-sm"
+						aria-label="coffee size"
+						name="sizeSelector"
+						[(ngModel)]="coffee.size"
+		>
+			<option [value]=null>Open this select menu</option>
 			<option *ngFor="let sizeitem of size" [value]="sizeitem">{{sizeitem.toString() | titlecase}} oz</option>
 		</select>
 	</div>
@@ -44,8 +49,12 @@
 	<!-- Rost Type -->
 	<div class="form-group p-3">
 		<label id="coffeeRoast">Roast:</label>
-		<select class="form-select form-select-sm" aria-label="coffee rost">
-			<option value="">Open this select menu</option>
+		<select class="form-select form-select-sm"
+						aria-label="coffee rost"
+						name="roastSelector"
+						[(ngModel)]="coffee.roast"
+		>
+			<option [value]=null>Open this select menu</option>
 			<option *ngFor="let roastitem of roast" [value]="roastitem">{{roastitem | titlecase}}</option>
 		</select>
 	</div>
@@ -53,9 +62,13 @@
 	<!-- Format -->
 	<div class="form-group p-3">
 		<label id="coffeeFormat">Format:</label>
-		<select class="form-select form-select-sm" aria-label="format">
-			<option value="">Open this select menu</option>
-			<option *ngFor="let formatitem of format" [value]="formatitem">{{formatitem | titlecase}}</option>
+		<select class="form-select form-select-sm"
+						aria-label="format"
+						name="formatSelection"
+						[(ngModel)]="coffee.format"
+		>
+			<option [value]=null>Open this select menu</option>
+			<option *ngFor="let formatitem of format"  [value]="formatitem">{{formatitem | titlecase}}</option>
 		</select>
 	</div>
 
@@ -71,6 +84,7 @@
 								 id="rng"
 								 min=0
 								 max="6"
+								 [defaultValue]="0"
 								 (input)="setValueOnIndex(ctmRng.value)"
 					>
 				</li>
@@ -114,13 +128,14 @@
 							[(ngModel)]="coffee.tastingNotes"
 							placeholder="Enter flavor notes..." required></textarea>
 	</div>
+
+	<div class="modal-footer">
+		<button type="button"
+						class="btn btn-primary"
+		>Clear All</button>
+		<button type="submit"
+						class="btn btn-success mx-3"
+						[disabled]="!addNewCoffeeForm.form.valid"
+		>Submit</button>
+	</div>
 </form>
-<div class="modal-footer">
-	<button type="button"
-					class="btn btn-primary"
-	>Clear All</button>
-	<button type="submit"
-					class="btn btn-success mx-3"
-					[disabled]="!addNewCoffeeForm.form.valid"
-	>Submit</button>
-</div>
