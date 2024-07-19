@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { CoffeeFormComponent } from '../coffee-form/coffee-form.component';
 import { DeleteCoffeeComponent } from '../delete-coffee/delete-coffee.component';
 import { NgSwitch, NgSwitchCase } from '@angular/common';
 import { TableCoffeeComponent } from '../table-coffee/table-coffee.component';
+import { FormType } from '../common/coffee-model';
 
 @Component({
   selector: 'app-home',
@@ -18,18 +19,21 @@ import { TableCoffeeComponent } from '../table-coffee/table-coffee.component';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
+	protected readonly FormType = FormType;
+
 	title = 'angular-capstone';
 	optionModal=0;
 	option = '';
 	titleModal='';
-	//'myModal'
-	//'Delete Item'
+
 	openModal(op:number) {
+
 		const modelDiv = document.getElementById('myModal');
 		if (modelDiv != null) {
 			modelDiv.style.display = 'block';
 			if (op == 1) {
-				this.titleModal = 'Add Item';
+				this.titleModal = 'Add Coffee';
 				this.optionModal = 1;
 			} else if (op == 2) {
 				this.titleModal = 'Delete Item';
@@ -39,6 +43,7 @@ export class HomeComponent {
 	}
 
 	closeModal(){
+
 		const modelDiv= document.getElementById('myModal');
 		if(modelDiv != null){
 			modelDiv.style.display='none';

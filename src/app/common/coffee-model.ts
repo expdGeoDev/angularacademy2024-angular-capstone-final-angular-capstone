@@ -8,7 +8,7 @@ export interface Coffee {
 	variety: string|null,
 	size: 8|12|14|16|20|24,
 	roast: "dark"|"light"|"espresso",
-	format: "k-pod",
+	format: "k-pod" | "ground" | "beans",
 	grind: number,
 	origin: string|null,
 	singleOrigin: boolean,
@@ -35,3 +35,8 @@ export interface IFilter {
 	applyPipe(rawData: Observable<Coffee[]>): Observable<Coffee[]>;
 }
 
+export enum FormType {
+
+	EDIT,
+	ADD
+}

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AsyncPipe, NgClass, NgForOf, NgIf, NgSwitchCase } from '@angular/common';
-import { CoffeeDataService } from '../services/coffee-data.service';
-import { Coffee } from '../common/coffee-model';
+import { NgClass, NgForOf, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { Coffee, FormType } from '../common/coffee-model';
 import { CoffeeHttpService } from '../services/coffee-http.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CoffeeFormComponent } from '../coffee-form/coffee-form.component';
@@ -20,39 +19,45 @@ import { map } from 'rxjs';
 		CoffeeFormComponent,
 		DeleteCoffeeComponent,
 		NgSwitchCase,
+		NgSwitch,
 		DetailsViewCoffeeComponent,
-		AsyncPipe,
 	],
   templateUrl: './table-coffee.component.html',
   styleUrl: './table-coffee.component.css'
 })
 export class TableCoffeeComponent implements OnInit{
+
+	FormType = FormType
+
 	p=0;
 	coffeeRow?:Coffee;
-
 	coffeeData! : Coffee[];
-	constructor(private coffeeService: CoffeeDataService, private coffeeHttp: CoffeeHttpService) {
-	}
+	optionModal: number = 0;
+	title: any;
+
+	constructor(
+		private coffeeHttp: CoffeeHttpService
+	) {}
+
 	ngOnInit() {
-		// this.coffeeData = this.coffeeService.getAllCoffee();
-		//
-		// console.log(this.coffeeData);
+
 		this.coffeeHttp.getAllCoffees().pipe(
 			map(c =>
 				c.filter( r => r.active )
 			)
 		).subscribe(
-			{next:(data)=>{
-				this.coffeeData = data;
+				{next:(data)=>{
+					this.coffeeData = data;
 					this.coffeeData.sort((a, b) =>
 						a.id < b.id ? -1 : 1
 					);
-			}
-			})
+				}
+				})
 	}
 
-expanded: boolean =false;
+	expanded: boolean =false;
 	checkExpanded(data:any){
+
 		if(this.expanded) {
 			this.iDFromTable.emit(data.id);
 			console.log('Index: ' + data.id);
@@ -62,28 +67,31 @@ expanded: boolean =false;
 		return this.expanded;
 	}
 
-	getDetailsFromCoffee(data:any){
+	getDetailsFromCoffee(data:Coffee, option:number){
+
 		const modelDiv= document.getElementById('myModalDetails');
-		if(modelDiv != null){
+		if(modelDiv){
 			modelDiv.style.display='block';
 		}
-		//this.iDFromTable.emit(data.id);
+
 		let idValue = +data.id;
 		this.coffeeRow =  this.getDetailsById(idValue);
-		console.log("Stop   "+ this.coffeeRow?.roaster);
-		console.log('Id: '+data.id);
+		this.optionModal = option;
 	}
 
 	closeModal(){
+
 		const modelDiv= document.getElementById('myModalDetails');
-		if(modelDiv != null){
+		if(modelDiv){
 			modelDiv.style.display='none';
 		}
 	}
 
 	getDetailsById(id:number){
-		console.log(this.coffeeData.find(x=>x.id==id));
-		return this.coffeeData.find(x=>x.id==id);
+
+		const el = this.coffeeData.find(x=>x.id===id);
+		console.log(el);
+		return this.coffeeData.find(x=>x.id===id);
 	}
 
 	@Output() iDFromTable = new EventEmitter<string>();
