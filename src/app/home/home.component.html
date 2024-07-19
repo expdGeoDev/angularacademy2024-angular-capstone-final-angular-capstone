@@ -14,7 +14,11 @@
 				<div class="modal-body">
 					<ng-container [ngSwitch]="optionModal">
 						<app-delete-coffee *ngSwitchCase=2 [title]="title"></app-delete-coffee>
-						<app-coffee-form *ngSwitchCase=1 [title] = "title" [formType]="FormType.ADD"></app-coffee-form>
+						<app-coffee-form *ngSwitchCase=1
+												     [title] = "title"
+												     [formType]="FormType.ADD"
+														 (formCompleted) = "closeModal()"
+						></app-coffee-form>
 					</ng-container>
 				</div>
 

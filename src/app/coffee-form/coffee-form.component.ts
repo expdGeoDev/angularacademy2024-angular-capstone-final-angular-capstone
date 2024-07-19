@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CoffeeHttpService } from '../services/coffee-http.service';
 import { Coffee, FormType } from '../common/coffee-model';
 import { FormsModule } from '@angular/forms';
@@ -16,7 +16,11 @@ import { NgForOf, TitleCasePipe } from '@angular/common';
 export class CoffeeFormComponent implements OnInit {
 
 	@Input() formType!: FormType
-	coffee: Coffee = this.createEmptyCoffee();
+	@Input() coffeeInput?: Coffee
+	@Output() formCompleted = new EventEmitter<string>();
+
+	coffee!: Coffee;
+
 	size: number[] = [8,12,14,16,20,24,]
 	roast: string[] = [ "dark","light","espresso" ]
 	format: string[] = [ "k-pod","ground","beans" ]
@@ -30,16 +34,18 @@ export class CoffeeFormComponent implements OnInit {
 		'Extra-Fine'
 	]
 
-	private coffeeList!: Coffee[]
-
 	constructor(
 		private service: CoffeeHttpService
 	) {}
 
 	ngOnInit(): void {
-		this.service
-			.getAllCoffees()
-			.subscribe(Coffees=> {this.coffeeList = Coffees})
+
+		if(this.coffeeInput){
+			this.coffee = this.coffeeInput;
+		}
+		else{
+			this.coffee = this.createEmptyCoffee();
+		}
 	}
 
 	createEmptyCoffee(): Coffee{
@@ -68,17 +74,20 @@ export class CoffeeFormComponent implements OnInit {
 
 	addNewCoffee():void {
 
-		console.log("Entered on add new coffee")
 		this.service
 			.addNewCoffee(this.coffee)
-			.subscribe()
+			.subscribe(() => {
+				this.formCompleted.emit()
+			})
 	}
 
 	updateCoffee():void {
 
 		this.service
 			.updateCoffee(this.coffee)
-			.subscribe()
+			.subscribe(() => {
+				this.formCompleted.emit()
+			})
 	}
 
 	submit() {
@@ -91,28 +100,6 @@ export class CoffeeFormComponent implements OnInit {
 				break;
 			default:
 				throw "Incorrect Form Type"
-		}
-	}
-
-	setFormat(value: string) {
-
-		if(
-			value === "k-pod" ||
-			value === "ground" ||
-			value === "beans"
-		){
-			this.coffee.format = value;
-		}
-	}
-
-	setRoast(value: string) {
-
-		if(
-			value === "dark" ||
-			value === "light"||
-			value === "espresso"
-		){
-			this.coffee.roast = value;
 		}
 	}
 }

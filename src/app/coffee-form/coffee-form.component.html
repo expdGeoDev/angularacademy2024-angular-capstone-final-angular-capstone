@@ -1,5 +1,6 @@
-<form #addNewCoffeeForm="ngForm"
-			(ngSubmit)="submit()">
+<form #addNewCoffeeForm="ngForm" (ngSubmit)="submit()" >
+
+	<input type="number" name="id" [(ngModel)]="coffee.id" hidden="hidden">
 
 	<!-- Coffee Roaster -->
 	<div class="form-group p-3">
@@ -14,7 +15,7 @@
 				#roaster="ngModel"
 				[(ngModel)]="coffee.roaster"
 			>
-			<em [hidden]="roaster.valid || roaster.pristine" class="invalid-feedback d-block"
+			<em [hidden]="roaster.valid || roaster.pristine"
 			>Invalid Roaster Value!</em>
 	</div>
 

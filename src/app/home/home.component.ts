@@ -19,14 +19,16 @@ import { FormType } from '../common/coffee-model';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-	//@Output()
+
+	protected readonly FormType = FormType;
+
 	title = 'angular-capstone';
 	optionModal=0;
 	option = '';
 	titleModal='';
-	//'myModal'
-	//'Delete Item'
+
 	openModal(op:number) {
+
 		const modelDiv = document.getElementById('myModal');
 		if (modelDiv != null) {
 			modelDiv.style.display = 'block';
@@ -41,11 +43,11 @@ export class HomeComponent {
 	}
 
 	closeModal(){
+
 		const modelDiv= document.getElementById('myModal');
 		if(modelDiv != null){
 			modelDiv.style.display='none';
 		}
 	}
 
-	protected readonly FormType = FormType;
 }
