@@ -4,23 +4,25 @@
 </div>
 <div class="container">
 	<app-table-coffee (iDFromTable)="title = $event" ></app-table-coffee>
-</div>
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">{{ titleModal }}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
+				</div>
+				<div class="modal-body">
+					<ng-container [ngSwitch]="optionModal">
+						<app-delete-coffee *ngSwitchCase=2 [title]="title"></app-delete-coffee>
+						<app-coffee-form *ngSwitchCase=1
+												     [title] = "title"
+												     [formType]="FormType.ADD"
+														 (formCompleted) = "closeModal()"
+						></app-coffee-form>
+					</ng-container>
+				</div>
 
-<!-- Modal -->
-<div class="modal" id="myModal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">{{ titleModal }}</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
 			</div>
-			<div class="modal-body">
-				<ng-container [ngSwitch]="optionModal">
-					<app-delete-coffee *ngSwitchCase=2 [title]="title"></app-delete-coffee>
-					<app-coffee-form *ngSwitchCase=1 [title]="title"></app-coffee-form>
-				</ng-container>
-			</div>
-
 		</div>
 	</div>
 </div>
